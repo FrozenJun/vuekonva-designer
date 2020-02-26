@@ -1,2 +1,29 @@
-# vuekonva-designer
-基于VueKonva的物可视设计器(IoT)，有拖拽图片图标，添加文字，绑定事件等功能
+# vuekonva
+
+## Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Run your unit tests
+```
+yarn test:unit
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
