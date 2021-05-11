@@ -4754,9 +4754,9 @@ hoopy@^0.1.4:
   integrity sha1-YJIH1mEQADOpqUAq096mdzgcGx0=
 
 hosted-git-info@^2.1.4:
-  version "2.8.6"
-  resolved "https://registry.npm.taobao.org/hosted-git-info/download/hosted-git-info-2.8.6.tgz#3a6e6d0324c5371fc8c7ba7175e1e5d14578724d"
-  integrity sha1-Om5tAyTFNx/Ix7pxdeHl0UV4ck0=
+  version "2.8.9"
+  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.9.tgz#dffc0bf9a21c02209090f2aa69429e1414daf3f9"
+  integrity sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==
 
 hpack.js@^2.1.6:
   version "2.1.6"
@@ -9698,6 +9698,11 @@ vue-jest@^3.0.5:
     source-map "^0.5.6"
     tsconfig "^7.0.0"
     vue-template-es2015-compiler "^1.6.0"
+
+vue-konva@^2.1.1:
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/vue-konva/-/vue-konva-2.1.7.tgz#1d94471e0b6a3d4139e118a22b4c907f4a091f9c"
+  integrity sha512-uKFp1/tGbt9HAcTXukk/PuPtCMfCSmNyU3Feo3Av4XVfcoBgVQA69+H9r2VQMX+Vwphez1qSfGf7ZNstM3nYRw==
 
 vue-loader@^15.8.3:
   version "15.9.0"
