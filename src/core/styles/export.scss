@@ -1,0 +1,6 @@
+// 导出给组件，页面使用
+@import './mixins/BEM.scss';
+@import './mixins/mixins.scss';
+@import './layout/layout.scss';
+@import './theme/index.scss';
+@import './mixins/breakpoints.scss'; // 需要放在theme/index之后

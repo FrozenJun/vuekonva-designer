@@ -1,4 +1,12 @@
-# vuekonva
+# vueadminorigin
+
+![Image of ...](https://github.com/yourname/your-repository/raw/master/folder/xxx.gif)
+
+## 注意，添加依赖时需要添加- W(--ignore-workspace-root-check)参数
+```
+yarn add something -W
+yarn add something --dev -W
+```
 
 ## Project setup
 ```
@@ -7,22 +15,27 @@ yarn install
 
 ### Compiles and hot-reloads for development
 ```
-yarn serve
+yarn run serve
 ```
 
 ### Compiles and minifies for production
 ```
-yarn build
+yarn run build
 ```
 
-### Run your unit tests
+### Run your tests
 ```
-yarn test:unit
+yarn run test
 ```
 
 ### Lints and fixes files
 ```
-yarn lint
+yarn run lint
+```
+
+### Run your unit tests
+```
+yarn run test:unit
 ```
 
 ### Customize configuration

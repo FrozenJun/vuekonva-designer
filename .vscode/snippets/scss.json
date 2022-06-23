@@ -1,0 +1,39 @@
+{
+  "include": {
+    "prefix": "in",
+    "body": [
+      "@include $1($2) {",
+      "  $0",
+      "}"
+    ],
+    "description": "include"
+  },
+  "layout": {
+    "prefix": "ly",
+    "body": [
+      "@include layout($1);$0"
+    ],
+    "description": "@include layout();"
+  },
+  "layout-align": {
+    "prefix": "la",
+    "body": [
+      "@include layout-align($1);$0"
+    ],
+    "description": "@include layout-align();"
+  },
+  "layout-wrap": {
+    "prefix": "lw",
+    "body": [
+      "@include layout-wrap($1);$0"
+    ],
+    "description": "@include layout-wrap();"
+  },
+  "media-down-width": {
+    "prefix": "mediadown",
+    "body": [
+      "@include media-down-width(${1: sm}, $2);$0"
+    ],
+    "description": "最大宽度为断点宽度的媒体查询。 不查询最大的断点。并设置宽度"
+  }
+}

@@ -1,0 +1,14 @@
+@include b(base-dialog) {
+  @include when(blue-header) {
+    .el-dialog__header {
+      background: rgba(64, 113, 233, 1);
+    }
+    .el-dialog__title {
+      font-weight:500;
+      color: white;
+    }
+    .el-dialog__headerbtn .el-dialog__close {
+      color: white;
+    }
+  }
+}

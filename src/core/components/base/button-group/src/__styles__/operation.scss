@@ -1,0 +1,12 @@
+@include b(base-button-group) {
+  @include when(operation) {
+    .el-button {
+      min-width: 70px;
+      height: 32px;
+      border-radius: 2px;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 7px;
+    }
+  }
+}

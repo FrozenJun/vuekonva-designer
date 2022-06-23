@@ -1,0 +1,10 @@
+@import './theming.scss';
+@import '@/app/themes/default.scss';
+
+// which themes you what to enable (empty to enable all)
+$nb-enabled-themes: (default);
+
+$nb-themes: nb-register-theme((
+  // app wise variables for each theme
+   sidebar-header-gap: 2rem,
+ ), default, default);

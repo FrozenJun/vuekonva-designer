@@ -1,0 +1,263 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  // min-height: 1200px;
+  background: #fff;
+  -moz-osx-font-smoothing: grayscale; // 抗锯齿
+  -webkit-font-smoothing: antialiased; // 抗锯齿
+  text-rendering: optimizeLegibility; // 文本渲染属性 - 侧重文本的可读性（清晰度）
+  font-family: Avenir, 'PingFang SC', 'PingFang-SC-Medium', Helvetica Neue,
+    Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+}
+
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+em,
+pre,
+figcaption,
+figure,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td,
+canvas img {
+  box-sizing: border-box;
+}
+canvas {
+  border: none;
+  outline: none;
+}
+ul {
+  list-style: none;
+}
+
+li {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+fieldset {
+  border: none;
+}
+
+section {
+  padding: 0;
+}
+
+/* 修改选中后的文字背景颜色为主题颜色
+-------------------------- */
+// ::-moz-selection{background: $--color-primary; color: $--color-white;}
+// ::selection {background: $--color-primary; color: $--color-white;}
+
+.search {
+  background-color: white;
+  border-left: 2px solid rgba(91, 140, 255, 1);
+  border-radius: 1px;
+  padding: 10px;
+}
+
+.search .el-form-item {
+  margin-bottom: 0px;
+}
+
+.comp-search {
+  position: relative;
+  margin-bottom: 20px;
+  padding-top: 16px;
+  padding-bottom: 8px;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #f0f2f5;
+  }
+
+  button.el-button {
+    border-radius: 2px;
+    font-weight: 400;
+  }
+  .comp-search__buttons {
+    padding-top: 3px;
+    height: 48px;
+  }
+}
+
+.base-table__buttons {
+  .el-button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    margin-right: 8px;
+    &:focus,
+    &:active,
+    &:hover {
+      background: transparent;
+      span {
+        color: #66b1ff;
+      }
+    }
+    span {
+      font-size: 14px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: rgba(0, 136, 255, 1);
+      line-height: 35px;
+      transition: color 0.3s;
+    }
+  }
+  .el-button + .el-button {
+    position: relative;
+    margin-left: 9px;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 14px;
+      background: #e8e8e8;
+      left: -9px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+.el-table__row {
+  .cell {
+    line-height: 35px;
+  }
+}
+
+.el-dialog__wrapper {
+  .el-dialog__header {
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  }
+}
+
+.el-form--inline .el-form-item:nth-child(2),
+.el-form--inline .el-form-item:nth-child(3) {
+  float: right;
+}
+
+.el-button--primary {
+  background-color: #0088ff;
+  border-color: #0088ff;
+}
+
+.el-input__inner {
+  border-radius: 2px;
+}
+
+// 修改form-item的margin-bottom
+.el-form-item {
+  margin-bottom: 8px;
+}
+.base-form-item__tip,
+.base-form-item__error {
+  bottom: -9px;
+}
+
+.comp-grid__pagination .el-pager li.active {
+  background: #0088ff;
+}
+
+.el-tabs__item {
+  font-weight: 400;
+}
+.el-tabs__item.is-active {
+  font-weight: 500;
+}
+
+// 菜单选择颜色
+.el-menu-item.is-active {
+  color: #ffffff;
+  font-weight: 500;
+  background-color: #0088ff !important;
+}
+
+// el-image查看大图关闭按钮下移,防止黑色topbar挡住
+.el-image-viewer__close {
+  top: 60px;
+}
+
+.comp-grid__pagination .el-pager li {
+  font-weight: 400;
+}
+
+.btn_container {
+  margin-top: 10px;
+}
+
+.high_search_btn {
+  border: 1px solid rgba(72, 118, 231, 1);
+}
+
+.el-main {
+  background-color: #f0f3fa;
+}
+
+@media only screen and (max-width: 767px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  html {
+    font-size: 16px;
+  }
+}

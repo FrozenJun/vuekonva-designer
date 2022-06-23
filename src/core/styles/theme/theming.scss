@@ -1,0 +1,139 @@
+/**
+ * This is a starting point where we declare the maps of themes and globally available functions/mixins
+ */
+
+@function map-set($map, $key, $value: null) {
+  $new: (
+    $key: $value
+  );
+  @return map-merge($map, $new);
+}
+
+$nb-enabled-themes: ();
+// 是否启用css变量
+$nb-enable-css-variables: false;
+
+$nb-themes: ();
+$nb-themes-non-processed: ();
+$nb-themes-export: ();
+
+// 组件在使用时获取$theme 的 $key 的值
+@function theme($key) {
+  @return map-get($theme, $key);
+}
+
+// nb-register-theme辅助函数
+// $value是string时，即引用的是其它变量的时候，查找该变量直至返回的是不是其它变量名为止
+@function nb-get-value($theme, $key, $value) {
+  @if (type-of($value) == "string") {
+    $tmp: map-get($theme, $value);
+
+    @if ($tmp != null) {
+      @return nb-get-value($theme, $value, $tmp);
+    }
+  }
+
+  @return map-get($theme, $key);
+}
+
+@function convert-to-css-variables($variables) {
+  $result: ();
+  @each $var, $value in $variables {
+    $result: map-set($result, $var, "--var(#{$var})");
+  }
+
+  @debug $result;
+  @return $result;
+}
+
+@function set-global-theme-vars($theme, $theme-name) {
+  $theme: $theme !global;
+  $theme-name: $theme-name !global;
+  @if ($nb-enable-css-variables) {
+    $theme: convert-to-css-variables($theme) !global;
+  }
+  @return $theme;
+}
+
+// 注册theme
+// 存在$default时，会将$default的主题和$name的主题合并生成新的theme
+@function nb-register-theme($theme, $name, $default: null) {
+  $theme-data: ();
+
+  @if ($default != null) {
+    // 根据$default获取存在$nb-themes-non-processed中的theme
+    // 并和传入的$theme合并，生成新的theme
+    $theme: map-merge(map-get($nb-themes-non-processed, $default), $theme);
+    // 将名称为$name的新的theme添加至$nb-themes-non-processed中
+    $nb-themes-non-processed: map-set($nb-themes-non-processed, $name, $theme) !global;
+    // 将当前theme存在$theme-data的data中
+    $theme-data: map-set($theme-data, data, $theme);
+    // 将当前theme的parent设为$default,并存于theme-data的parenet中
+    // 将nb-themes-export的$name设为$theme-data
+    $nb-themes-export: map-set($nb-themes-export, $name, map-set($theme-data, parent, $default)) !global;
+  } @else {
+    // 将名称为$name的theme添加至$nb-themes-non-processed中
+    $nb-themes-non-processed: map-set($nb-themes-non-processed, $name, $theme) !global;
+    // 将当前theme存在$theme-data的data中
+    $theme-data: map-set($theme-data, data, $theme);
+    // 将当前theme的parent设为null,并存于theme-data的parenet中
+    // 将nb-themes-export的$name设为$theme-data
+    $nb-themes-export: map-set($nb-themes-export, $name, map-set($theme-data, parent, null)) !global;
+  }
+
+  // 解析$theme，将引用变量名名称的变量解析为变量名的值
+  $theme-parsed: ();
+  @each $key, $value in $theme {
+    $theme-parsed: map-set($theme-parsed, $key, nb-get-value($theme, $key, $value));
+  }
+
+  // enable right away when installed 安装时立即启用
+  $theme-parsed: set-global-theme-vars($theme-parsed, $name);
+  @return map-set($nb-themes, $name, $theme-parsed);
+}
+
+@function get-enabled-themes() {
+  $themes-to-install: ();
+
+  @if (length($nb-enabled-themes) > 0) {
+    @each $theme-name in $nb-enabled-themes {
+      $themes-to-install: map-set($themes-to-install, $theme-name, map-get($nb-themes, $theme-name));
+    }
+  } @else {
+    // 如果为空，安装全部主题
+    $themes-to-install: $nb-themes;
+  }
+
+  @return $themes-to-install;
+}
+
+@mixin install-css-variables($theme-name, $variables) {
+  .nb-theme-#{$theme-name} {
+    @each $var, $value in $variables {
+      --#{$var}: $value;
+    }
+  }
+}
+
+@mixin nb-install-style() {
+  $themes-to-install: get-enabled-themes();
+
+  @each $theme-name, $theme in $themes-to-install {
+    .nb-theme-#{$theme-name} {
+      $theme: set-global-theme-vars($theme, $theme-name);
+      @content;
+    }
+  }
+}
+
+@mixin nb-for-theme($name) {
+  @if ($theme-name == $name) {
+    @content;
+  }
+}
+
+@mixin nb-except-theme($name) {
+  @if ($theme-name != $name) {
+    @content;
+  }
+}

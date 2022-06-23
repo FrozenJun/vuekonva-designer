@@ -1,0 +1,21 @@
+@include b(base-form) {
+  @include when(look) {
+    .el-input.is-disabled .el-input__inner {
+      border: none;
+      background-color: #fafafa;
+      color: #000;
+      font-weight: 400;
+      cursor: text;
+    }
+    .is-disabled .base-upload-img__icon {
+      background-color: #fafafa;
+    }
+    .el-textarea.is-disabled .el-textarea__inner {
+      border: none;
+      resize: none;
+      color: #000;
+      cursor: text;
+      background-color: #fafafa;
+    }
+  }
+}

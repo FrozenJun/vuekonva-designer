@@ -1,0 +1,194 @@
+{
+  // HTML
+  "co-button": {
+    "prefix": "co-button",
+    "body": [
+      "<co-button :config=\"button\">$1</co-button>$0"
+    ],
+    "description": "按钮组件Html标签"
+  },
+  "component-dialog-tag": {
+    "prefix": "dialogTag",
+    "body": [
+      "<comp-dialog :dialogConfig=\"dialogConfig\"$1></comp-dialog>$0"
+    ],
+    "description": "dialog组件Html标签"
+  },
+  "component-search-tag": {
+    "prefix": "searchTag",
+    "body": [
+      "<comp-search :searchConfig=\"searchConfig\"$1></comp-search>$0"
+    ],
+    "description": "search组件Html标签"
+  },
+  "component-grid-tag": {
+    "prefix": "gridTag",
+    "body": [
+      "<comp-grid :gridConfig=\"gridConfig\"$1></comp-grid>$0"
+    ],
+    "description": "grid组件Html标签"
+  },
+  "component-tabs-tag": {
+    "prefix": "tabsTag",
+    "body": [
+      "<comp-tabs :tabsConfig=\"tabsConfig\"$1></comp-tabs>$0"
+    ],
+    "description": "tabs组件Html标签"
+  },
+  "component-form-tag": {
+    "prefix": "formTag",
+    "body": [
+      "<comp-form :formConfig=\"formConfig\"$1></comp-form>$0"
+    ],
+    "description": "form组件Html标签"
+  },
+  "component-add-edit-dialog-tag": {
+    "prefix": "addEditDialogTag",
+    "body": [
+      "<comp-add-edit-dialog :addEditDialogConfig=\"addEditDialogConfig\"$1></comp-add-edit-dialog>$0"
+    ],
+    "description": "add-edit-dialog组件Html标签"
+  },
+  "component-tree-tag": {
+    "prefix": "treeTag",
+    "body": [
+      "<comp-tree :treeConfig=\"treeConfig\"$1></comp-tree>$0"
+    ],
+    "description": "tree组件Html标签"
+  },
+  // TypeScript
+  "component-dialog-config": {
+    "prefix": "dialogConfig",
+    "body": [
+      "dialogConfig: CompDialogAdapter = {",
+      "  dialog: {",
+      "     title: '$1'${2:,",
+      "     width: '$3'}${4:,",
+      "    minWidth: '$5'}",
+      "  }",
+      "}$0"
+    ],
+    "description": "comp-dialog组件默认配置"
+  },
+  "component-search-config": {
+    "prefix": "searchConfig",
+    "body": [
+      "searchConfig: CompSearchAdapter = {",
+      "  form: {",
+      "    formItems: [",
+      "      {",
+      "        label: '$1',",
+      "        modelName: '$2'$3",
+      "      }$4",
+      "    ]",
+      "  },",
+      "  handleSearchParam(data) {",
+      "    return data;",
+      "  },",
+      "  formModel: {$5}",
+      "}$0"
+    ],
+    "description": "comp-search组件默认配置"
+  },
+  "component-grid-config": {
+    "prefix": "gridConfig",
+    "body": [
+      "gridConfig: CompGridAdapter = {",
+      "  table: {",
+      "    data: [],",
+      "    columns: []",
+      "  }",
+      "}$0"
+    ],
+    "description": "comp-grid组件默认配置"
+  },
+  "component-tabs-config": {
+    "prefix": "tabsConfig",
+    "body": [
+      "tabsConfig: CompTabsAdapter = {",
+      "  model: '$1',",
+      "  tabs: [",
+      "    {",
+      "      name: '$2',",
+      "      label: '$3',",
+      "      slot: '$4'",
+      "    }",
+      "  ]",
+      "}$0"
+    ],
+    "description": "comp-tabs组件默认配置"
+  },
+  "component-form-config": {
+    "prefix": "formConfig",
+    "body": [
+      "formConfig: CompFormAdapter = {",
+      "  form: {",
+      "    formItems: [",
+      "      {",
+      "        label: '$1',",
+      "        modelName: '$2'",
+      "      }",
+      "    ]",
+      "  },",
+      "  formModel: {$3}",
+      "}$0"
+    ],
+    "description": "comp-form组件默认配置"
+  },
+  "component-add-edit-dialog-config": {
+    "prefix": "addEditDialogConfig",
+    "body": [
+      "addEditDialogConfig: CompAddEditDialogAdapter = {",
+      "  addApi: $1,",
+      "  editApi: $2,",
+      "  dialog: {",
+      "    width: '$3',",
+      "    minWidth: '$4'",
+      "  },",
+      "  form: {",
+      "    formItems: [$5]",
+      "  },",
+      "  formModel: {$6}",
+      "}$0"
+    ],
+    "description": "comp-add-edit-dialog组件默认配置"
+  },
+  // SCSS
+  "include": {
+    "prefix": "in",
+    "body": [
+      "@include $1($2) {",
+      "  $0",
+      "}"
+    ],
+    "description": "include"
+  },
+  "layout": {
+    "prefix": "ly",
+    "body": [
+      "@include layout($1);$0"
+    ],
+    "description": "@include layout();"
+  },
+  "layout-align": {
+    "prefix": "la",
+    "body": [
+      "@include layout-align($1);$0"
+    ],
+    "description": "@include layout-align();"
+  },
+  "layout-wrap": {
+    "prefix": "lw",
+    "body": [
+      "@include layout-wrap($1);$0"
+    ],
+    "description": "@include layout-wrap();"
+  },
+  "media-down-width": {
+    "prefix": "md",
+    "body": [
+      "@include media-down-width(${1:xs/sm/md/lg/xl/xxl}, $2);$0"
+    ],
+    "description": "最大宽度为断点宽度的媒体查询。 不查询最大的断点。并设置宽度"
+  }
+}

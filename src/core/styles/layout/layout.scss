@@ -1,0 +1,64 @@
+@mixin layout-wrap($wrap: null) {
+  @if $wrap == null { $wrap : 'wrap' }
+  @if $wrap == 'wrap' {
+    flex-wrap: wrap;
+  }
+  @if $wrap == 'nowrap' {
+    flex-wrap: nowrap;
+  }
+}
+
+@mixin layout($direction: null, $wrap: null) {
+  @if $direction != 'column' { $direction : 'row'; }
+
+  @if $direction == 'row' {
+    box-sizing: border-box;
+    display: flex;
+
+    flex-direction: row;
+
+    @include layout-wrap($wrap)
+  }
+
+  @if $direction == 'column' {
+    box-sizing: border-box;
+    display: flex;
+
+    flex-direction: column;
+
+    @include layout-wrap($wrap)
+  }
+}
+
+
+@mixin layout-align($align: 'start', $justify: 'start') {
+
+  $isAlignValid: false;
+  $isJustifyValid: false;
+  
+  @each $name in 'start', 'between', 'center', 'around', 'end', 'stretch' {
+    @if $name == $align { $isAlignValid: true }
+    @if $name == $justify { $isJustifyValid: true }
+  }
+
+  @if $isAlignValid == true and $isJustifyValid == true {
+    
+      @if $align == 'start' { $align: 'flex-start' }
+      @if $justify == 'start' { $justify: 'flex-start' }
+    
+      @if $align == 'end' { $align: 'flex-end' }
+      @if $justify == 'end' { $justify: 'flex-end' }
+    
+      @if $align == 'between' { $align: 'space-between' }
+      @if $justify == 'between' { $justify: 'space-between' }
+    
+      @if $align == 'around' { $align: 'space-around' }
+      @if $justify == 'around' { $justify: 'space-around' }
+    
+      align-items: #{$align};
+      align-content: #{$align};
+      // max-width: 100%;
+    
+      justify-content: #{$justify};
+  }
+}

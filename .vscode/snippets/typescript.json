@@ -1,0 +1,108 @@
+{
+  "component-search-config": {
+    "prefix": "searchConfig",
+    "body": [
+      "searchConfig: CompSearchAdapter = {",
+      "  form: {",
+      "    formItems: [",
+      "      {",
+      "        label: '$1',",
+      "        modelName: '$2'$3",
+      "      }$4",
+      "    ]",
+      "  },",
+      "  handleSearchParam(data) {",
+      "    return data;",
+      "  },",
+      "  formModel: {$5}",
+      "}$0"
+    ],
+    "description": "comp-search组件默认配置"
+  },
+  "component-dialog-config": {
+    "prefix": "dialogConfig",
+    "body": [
+      "dialogConfig: CompDialogAdapter = {",
+      "  dialog: {",
+      "    title: '$1'${2:,",
+      "    width: '$3'}${4:,",
+      "    minWidth: '$5'}",
+      "  }",
+      "}$0"
+    ],
+    "description": "comp-dialog组件默认配置"
+  },
+  "component-grid-config": {
+    "prefix": "gridConfig",
+    "body": [
+      "gridConfig: CompGridAdapter = {",
+      "  table: {",
+      "    data: [],",
+      "    columns: []",
+      "  }",
+      "}$0"
+    ],
+    "description": "comp-grid组件默认配置"
+  },
+  "component-tabs-config": {
+    "prefix": "tabsConfig",
+    "body": [
+      "tabsConfig: CompTabsAdapter = {",
+      "  model: '$1',",
+      "  tabs: [",
+      "    {",
+      "      name: '$2',",
+      "      label: '$3',",
+      "      slot: '$4'",
+      "    }",
+      "  ]",
+      "}$0"
+    ],
+    "description": "comp-tabs组件默认配置"
+  },
+  "component-form-config": {
+    "prefix": "formConfig",
+    "body": [
+      "formConfig: CompFormAdapter = {",
+      "  form: {",
+      "    formItems: [",
+      "      {",
+      "        label: '$1',",
+      "        modelName: '$2'",
+      "      }",
+      "    ]",
+      "  },",
+      "  formModel: {$3}",
+      "}$0"
+    ],
+    "description": "comp-form组件默认配置"
+  },
+  "component-add-edit-dialog-config": {
+    "prefix": "addEditDialogConfig",
+    "body": [
+      "addEditDialogConfig: CompAddEditDialogAdapter = {",
+      "  addApi: $1,",
+      "  editApi: $2,",
+      "  dialog: {",
+      "    width: '$3',",
+      "    minWidth: '$4'",
+      "  },",
+      "  form: {",
+      "    formItems: [$5]",
+      "  },",
+      "  formModel: {$6}",
+      "}$0"
+    ],
+    "description": "comp-add-edit-dialog组件默认配置"
+  },
+  "form-item": {
+    "prefix": "formItem",
+    "body": [
+      "{",
+      "  label: '$1',",
+      "  modelName: '$2',",
+      "  rule: '${3:required}',",
+      "},$0"
+    ]
+  }
+}

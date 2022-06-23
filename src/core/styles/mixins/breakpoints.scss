@@ -1,0 +1,147 @@
+// 窗口大小的断点和媒体查询。
+//
+// Breakpoints被定义为（name: minimum width）的映射，从小到大的顺序：
+//
+// 默认：(xs: 0, sm: 800px, md: 960px, lg: 1280px, xl: 1680px)
+// 如果需要自定义，可通过添加$theme中的default-breakpoints字段覆盖默认值
+//
+// 默认$default-breakpoints可以获取主题中默认定义的default-breakpoints
+
+@function getBreakpoints() {
+  $default: (
+    xs: 0,
+    sm: 800px,
+    md: 960px,
+    lg: 1280px,
+    xl: 1680px,
+    xxl: 1920px
+  );
+  @return if(theme(default-breakpoints), theme(default-breakpoints), $default);
+}
+
+$default-breakpoints: getBreakpoints();
+
+// 下一个断点的名称，最后一个断点返回null
+//
+//    >> breakpoint-next(sm)
+//    md
+//    >> breakpoint-next(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    md
+//    >> breakpoint-next(sm, $breakpoint-names: (xs sm md lg xl))
+//    md
+@function breakpoint-next($name, $breakpoints: $default-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name); // $name在映射中的位置
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+// 最小断点宽度。 对于最小（第一）断点返回null。
+//
+//    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    576px
+@function breakpoint-min($name, $breakpoints: $default-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+
+// 最大断点宽度。 最大（最后）断点返回null。
+// 最大值计算为下一个最小值0.02px
+// 解决“min-”和“max-”前缀和具有小数宽度的视口的限制。
+// See https://www.w3.org/TR/mediaqueries-4/#mq-min-max
+// 使用0.02px而不是0.01px来解决Safari中当前的舍入错误。
+// See https://bugs.webkit.org/show_bug.cgi?id=178261
+//
+//    >> breakpoint-max(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    767.98px
+@function breakpoint-max($name, $breakpoints: $default-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+  @return if($next, breakpoint-min($next, $breakpoints) - .02px, null);
+}
+
+// 如果是最小断点，则返回空字符串，否则返回前面带有破折号的名称。
+// 用于制作响应式实用程序。
+//
+//    >> breakpoint-infix(xs, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    ""  (Returns a blank string)
+//    >> breakpoint-infix(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    "-sm"
+@function breakpoint-infix($name, $breakpoints: $default-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}
+
+// 最小宽度为断点宽度的媒体查询。 不查询最小的断点。
+// 使@content会应用于等于或者大于给定断点。
+@mixin media-breakpoint-up($name, $breakpoints: $default-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// 最大宽度为断点宽度的媒体查询。 不查询最大的断点。
+// 使@content会应用于等于或者小于给定断点。
+@mixin media-breakpoint-down($name, $breakpoints: $default-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// 跨越多个断点宽度的媒体。
+// 使@content应用于min和max断点之间
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $default-breakpoints) {
+  $min: breakpoint-min($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($lower, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+//断点的最小和最大宽度之间的介质。
+//最小断点没有最小值，最大断点没有最大值。
+//使@content仅适用于给定的断点，而不是一个区域的视口。
+@mixin media-breakpoint-only($name, $breakpoints: $default-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  $max: breakpoint-max($name, $breakpoints);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($name, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($name, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+// 最大宽度为断点宽度的媒体查询。 不查询最大的断点。并设置宽度
+@mixin media-down-width($name, $width, $breakpoints: $default-breakpoints) {
+  @include media-breakpoint-down($name, $breakpoints) {
+    width: #{$width + "%"};
+    max-width: #{$width + "%"};
+  }
+}

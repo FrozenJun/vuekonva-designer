@@ -1,0 +1,19 @@
+$theme: (
+  input-bg: #F6F8FC,
+  input-border: #B6CCFF,
+
+  border-bg: #5B8CFF,
+
+  color-label: #656565,
+  color-text: #333,
+  color-disabled: rgba(255, 255, 255, 0.4),
+
+  color-primary: #4071E9,
+  color-success: #40dc7e,
+  color-info: #4ca6ff,
+  color-warning: #ffa100,
+  color-danger: #ff4c6a
+);
+
+// register the theme
+$nb-themes: nb-register-theme($theme, default);
