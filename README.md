@@ -1,6 +1,6 @@
 # vueadminorigin
 
-![Image of ...](https://github.com/yourname/your-repository/raw/master/folder/xxx.gif)
+![Image of ...](https://github.com/FrozenJun/vuekonva-designer/blob/master/demo.gif)
 
 ## 注意，添加依赖时需要添加- W(--ignore-workspace-root-check)参数
 ```
